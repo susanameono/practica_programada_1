@@ -76,3 +76,11 @@ datos_shows_limpio <- columnas_espanol |>
 ```
 
 
+d. Elimine filas y columnas vacías. (2pts)
+
+```{r}
+datos_sin_vacios <- datos_shows_limpio |> 
+  remove_empty(which = c("rows", "cols")) # remueve filas y columnas vacías
+
+# ahora tenemos 8790 filas, es decir, se eliminó 1 fila que estaba vacía. No se eliminó ninguna columna.
+```
