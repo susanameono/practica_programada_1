@@ -94,3 +94,57 @@ datos_sin_lanzamiento <- datos_sin_vacios |>
   distinct()
 ```
 
+
+f. Haga una inspección de las variables type y country para determinar si hay observaciones mal escritas o escritas de diferentes maneras. Si es ahí, haga la limpieza para poder homogenizar esos datos. (10pts)
+
+```{r}
+# Inspeccionamos primero la columna de "Tipo":
+
+inspeccion_tipo  <- datos_sin_lanzamiento |>
+  distinct(Tipo)
+View(inspeccion_tipo)
+glimpse(inspeccion_tipo)
+
+# vemos que hay valores duplicados que están mal escritos: "tv show", "movie", "Movi", entonces los vamos a homogenizar para que solamente queden dos posibles valores: "Movie" y "TV Show"
+```
+
+```{r}
+#Homogenización de la columna "Tipo":
+tipos_shows <- datos_sin_lanzamiento |> 
+  mutate(Tipo = case_when(Tipo == "tv show" ~ "TV Show",
+                                       Tipo %in% c("movie", "Movi") ~ "Movie",
+                                       TRUE ~ Tipo 
+                                       ))
+tipos_distintos <- tipos_shows |>
+distinct(Tipo)
+View(tipos_distintos)
+```
+
+
+```{r}
+# Luego inspeccionamos la columna de "País":
+
+inspeccion_pais  <- tipos_shows |>
+  distinct(País)
+View(inspeccion_pais)
+glimpse(inspeccion_pais)
+
+# vemos que hay valores duplicados que están mal escritos: "united states", "United State", "pakistan", "india", "canada", 
+#entonces los vamos a homogenizar para que solamente queden los nombres correctos: "United States", "India", "Pakistan", "Canada".
+```
+
+```{r}
+#Homogenización de la columna "País":
+paises_shows <- tipos_shows |> 
+  mutate(País = case_when(País == "canada" ~ "Canada",
+                          País == "pakistan" ~ "Pakistan",
+                          País == "india" ~ "India",
+                          País == "West Germany" ~ "Germany",
+                                       País %in% c("united states", "United State") ~ "United States",
+                                       TRUE ~ País 
+                                       ))
+paises_distintos <- paises_shows |>
+distinct(País)
+View(paises_distintos)
+```
+
