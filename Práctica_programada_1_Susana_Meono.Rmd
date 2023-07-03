@@ -148,3 +148,34 @@ distinct(País)
 View(paises_distintos)
 ```
 
+
+g. Para todas las columnas de tipo carácter, en donde haya NA, coloque “Sin información”. (4pts)
+
+
+```{r}
+glimpse(paises_shows) # todas las columnas son de tipo carácter
+```
+
+```{r}
+datos_shows_sin_na <- paises_shows |> 
+  mutate(ID_de_show = replace_na(ID_de_show, "Sin información"),
+         Tipo = replace_na(Tipo, "Sin información"),
+         Título = replace_na(Título, "Sin información"),
+         Director = replace_na(Director, "Sin información"),
+         País = replace_na(País, "Sin información"),
+         Fecha_añadida = replace_na(Fecha_añadida, "Sin información"),
+         Puntuación = replace_na(Puntuación, "Sin información"),
+         Duración = replace_na(Duración, "Sin información"),
+         Incluido_en = replace_na(Incluido_en, "Sin información"))
+   
+View(datos_shows_sin_na)      
+```
+
+
+
+
+
+
+
+
+
