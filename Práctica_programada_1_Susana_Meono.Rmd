@@ -180,9 +180,31 @@ View(datos_shows_sin_na2)
 ```
 
 
+h. Añada a su conjunto de datos una nueva columna llamada anyo que indique el año en que el show o película fue añadido a Netflix. Añada también una columna llamada mes que indique el mes en que el show o película fue añadido a Netflix. (6pts)
 
+```{r}
+glimpse (datos_shows_sin_na) # la columna de Fecha_añadida está en formato de character, entonces primero la convertimos a formato de fecha.
+```
 
+```{r}
+datos_shows_fecha <- datos_shows_sin_na |> 
+  mutate(Fecha_añadida = mdy(Fecha_añadida))
 
+glimpse(datos_shows_fecha) # verificamos que se sí se cambió a formato de fecha
+```
 
+```{r}
+# Ahora sí, creamos la nueva columna de anyo:
+datos_shows_anyo <- datos_shows_fecha |> 
+  mutate(anyo = year(Fecha_añadida))
+View(datos_shows_anyo)
+```
+
+```{r}
+# Luego, creamos la nueva columna de mes:
+datos_shows_mes <- datos_shows_anyo |> 
+  mutate(mes = month(Fecha_añadida))
+View(datos_shows_mes)
+```
 
 
