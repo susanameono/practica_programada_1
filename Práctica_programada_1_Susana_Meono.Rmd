@@ -171,6 +171,13 @@ datos_shows_sin_na <- paises_shows |>
 View(datos_shows_sin_na)      
 ```
 
+También podemos aplicar "Sin información" a todas las columnas del dataframe, con las funciones across y everything() de tidyr:
+
+```{r}
+datos_shows_sin_na2 <- paises_shows |> 
+  mutate(across(everything(), function(x) ifelse(is.na(x), "Sin información", x))) # Coloca Sin Información si encuentra alguna observación es NA para todas las columnas
+View(datos_shows_sin_na2) 
+```
 
 
 
