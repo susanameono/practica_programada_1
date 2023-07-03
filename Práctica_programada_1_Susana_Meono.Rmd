@@ -46,7 +46,33 @@ columnas_espanol <- datos_shows |>
          "Duración" = "duration",
          "Incluido_en" = "listed_in",
          )
+clean_names(columnas_espanol)
 View(columnas_espanol)
+```
+
+
+c. Elimine filas duplicadas. (2pts)
+
+```{r}
+filas_duplicadas <- columnas_espanol |> 
+  janitor::get_dupes()
+```
+
+Hay 21 filas duplicadas en total, que tienen al menos un duplicado. Esta es la lista de las filas con duplicados:
+
+```{r}
+#para que no se vean valores repetidos se aplica distinct:
+filas_distintas_duplicadas <- filas_duplicadas |> 
+  distinct()
+```
+
+Para eliminar las filas duplicadas hacemos un distinct() de los datos en español:
+
+```{r}
+datos_shows_limpio <- columnas_espanol |> 
+  distinct()
+
+#Pasamos de tener 8804 filas inicialmente, a tener 8791 filas, luego de eliminar las duplicadas.
 ```
 
 
