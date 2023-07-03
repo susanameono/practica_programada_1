@@ -84,3 +84,13 @@ datos_sin_vacios <- datos_shows_limpio |>
 
 # ahora tenemos 8790 filas, es decir, se eliminó 1 fila que estaba vacía. No se eliminó ninguna columna.
 ```
+
+
+e. Elimine la variable correspondiente al año de lanzamiento (release_year.) (2pts)
+
+```{r}
+datos_sin_lanzamiento <- datos_sin_vacios |> 
+  select(-Año_estreno) |> 
+  distinct()
+```
+
