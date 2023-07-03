@@ -27,8 +27,26 @@ Carga de los datos:
 ```{r}
 datos_shows <- read_csv2("https://raw.githubusercontent.com/isa229/programacion_analisis_datos_ii/main/netflix_info.csv") 
 View(datos_shows)
+
 ```
 
+b. Ajuste los nombres de las columnas para que estén en español. (2pts)
 
+```{r}
+glimpse(datos_shows)
+columnas_espanol <- datos_shows |>
+  rename("ID_de_show" = "show_id",
+         "Tipo" = "type",
+         "Título" = "title",
+         "Director" = "director",
+         "País" = "country",
+         "Fecha_añadida"= "date_added",
+         "Año_estreno" = "release_year",
+         "Puntuación" = "rating",
+         "Duración" = "duration",
+         "Incluido_en" = "listed_in",
+         )
+View(columnas_espanol)
+```
 
 
