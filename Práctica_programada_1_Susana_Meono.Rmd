@@ -1,0 +1,34 @@
+---
+title: 'Práctica programada 1: Preparación y limpieza de datos'
+author: "Susana Meoño Piedra"
+date: "2023-07-02"
+output: html_document
+---
+
+a. Cree un archivo Rmarkdown para resolver esta práctica programada. En el chunk de setup cargue las librerías que considere necesarias para resolver la práctica. Los datos para trabajar puede cargarlos con la función read_csv2 de readr directamente de la siguiente dirección: “https://raw.githubusercontent.com/isa229/programacion_analisis_datos_ii/main/netflix_info.csv” (1pto)
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(datasets)
+library(datos)
+library(ggplot2)
+library(readr) #lectura y carga de datos
+library(readxl)
+library(tidyr)# doma de datos
+library(janitor) #limpieza de datos
+library(lubridate)
+library(hms)
+library(stringr)
+```
+
+Carga de los datos:
+
+```{r}
+datos_shows <- read_csv2("https://raw.githubusercontent.com/isa229/programacion_analisis_datos_ii/main/netflix_info.csv") 
+View(datos_shows)
+```
+
+
+
+
