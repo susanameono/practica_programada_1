@@ -12,7 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(datasets)
 library(datos)
-library(ggplot2)
 library(readr) #lectura y carga de datos
 library(readxl)
 library(tidyr)# doma de datos
@@ -20,7 +19,6 @@ library(janitor) #limpieza de datos
 library(lubridate)
 library(hms)
 library(stringr)
-library(utils)
 ```
 
 Carga de los datos:
