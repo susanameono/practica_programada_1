@@ -221,3 +221,46 @@ shows_por_pais <- datos_shows_mes |>
 
 View(shows_por_pais) # Podemos ver la cantidad de películas y shows de TV que hay por c/u de los 85 países.
 ```
+
+
+j. Cuáles son los 10 directores con mayor cantidad de películas (sin contar shows de TV) en Netflix? Ordénelos por orden descendente. (4pts)
+
+```{r}
+# Primero, extraemos las películas por cada Director:
+
+pelis_por_director <- datos_shows_mes |>
+  filter(Tipo == "Movie")|>
+  group_by(Director) |> 
+  distinct(Título)|> 
+  count()
+View(pelis_por_director)
+```
+
+```{r}
+#Luego, ordemos la lista anterior en orden descendente:
+
+directores_mas_pelis <- pelis_por_director |> 
+  arrange(desc(n))
+View(directores_mas_pelis)
+```
+
+```{r}
+# Por último, seleccionamos solamente los 10 directores con mayor cantidad de películas, en orden descendente:
+
+directores_top_10_pelis <- directores_mas_pelis |> 
+  filter(n > 11)
+View(directores_top_10_pelis)
+
+# Podemos ver que aparecen solamente 9 Directores, ya que el primer lugar lo ocupa "Sin informacion".
+```
+
+```{r}
+# Podemos omitir en nuestro Top 10 los campos de "Sin informacion":
+
+directores_top_10_pelis_2 <- directores_mas_pelis |> 
+  filter(n >= 11, Director != "Sin información")
+View(directores_top_10_pelis_2)
+
+# Ahora sí, solamente aparecen los nombres de los 10 Directores con mayor cantidad de películas.
+```
+
