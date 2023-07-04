@@ -264,3 +264,49 @@ View(directores_top_10_pelis_2)
 # Ahora sí, solamente aparecen los nombres de los 10 Directores con mayor cantidad de películas.
 ```
 
+
+k. Cuáles son los 10 directores con mayor cantidad de shows de TV (sin contar películas) en Netflix? Ordénelos por orden descendente. (4pts)
+
+```{r}
+# Primero, extraemos los Shows de TV por cada Director:
+
+shows_por_director <- datos_shows_mes |>
+  filter(Tipo == "TV Show")|>
+  group_by(Director) |> 
+  distinct(Título)|> 
+  count()
+View(shows_por_director)
+```
+
+```{r}
+#Luego, ordemos la lista anterior en orden descendente:
+
+directores_mas_shows <- shows_por_director |> 
+  arrange(desc(n))
+View(directores_mas_shows)
+
+# En este caso, a diferencia del ejercicio anterior (del Top 10 de Directores con mayor cantidad de películas), no es posible o lógico establecer los 10 Directores con la mayor cantidad de Shows de TV, ya que, si vemos en este dataframe, a partir de la fila #10 que corresponde al Director "Adrien Lagier, Ousmane Ly" el resto de directores hacia abajo también tienen todos 1 Show de TV. Entonces no tiene mucho sentido hacer este Top 10. Además, en primer lugar aparece nuevamente "Sin información" con 2413 TV Shows.
+```
+
+```{r}
+# Sin embargo, para cumplir con lo que solicita el enunciado, podemos omitir en nuestra lista los campos de "Sin informacion" e indicar "a pie" los nombres de los 10 Directores que aparecen de primeros en la lista, para así tener de alguna manera un Top 10:
+
+directores_top_10_shows <- directores_mas_shows |> 
+  filter(Director == "Alastair Fothergill"| 
+         Director == "Mark Thornton, Todd Kauffman"| 
+         Director == "Stan Lathan"|
+         Director == "Hsu Fu-chun"|
+         Director == "Iginio Straffi" |
+         Director == "Ken Burns"| 
+         Director == "Rob Seidenglanz"| 
+         Director == "Shin Won-ho" |
+         Director == "Adrien Lagier, Ousmane Ly"| 
+         Director == "Ah Loong")
+
+View(directores_top_10_shows)
+
+# Ahora sí, solamente aparecen los nombres de los 10 Directores con mayor cantidad de Shows de TV, en orden descendente.
+```
+
+
+
