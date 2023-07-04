@@ -20,6 +20,7 @@ library(janitor) #limpieza de datos
 library(lubridate)
 library(hms)
 library(stringr)
+library(utils)
 ```
 
 Carga de los datos:
@@ -208,3 +209,15 @@ View(datos_shows_mes)
 ```
 
 
+##Una vez que haya terminado la limpieza anterior, responda las siguientes preguntas:
+
+i. ¿Cuántas películas y shows de TV hay por país? (4pts)
+
+```{r}
+shows_por_pais <- datos_shows_mes |> 
+  group_by(País) |> 
+  distinct(Título)|> 
+  count()
+
+View(shows_por_pais) # Podemos ver la cantidad de películas y shows de TV que hay por c/u de los 85 países.
+```
