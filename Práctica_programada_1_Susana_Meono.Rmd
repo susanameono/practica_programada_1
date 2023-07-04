@@ -309,4 +309,40 @@ View(directores_top_10_shows)
 ```
 
 
+l. Obtenga la lista de películas y shows de TV que se añadieron en marzo del año 2020. Cuántos fueron? (4pts)
 
+```{r}
+# Filtramos por anyo y mes:
+shows_pelis_marzo_2020 <- datos_shows_mes |>
+  filter(anyo == 2020 & mes == 3)
+View(shows_pelis_marzo_2020)
+```
+
+```{r}
+# Seleccionamos solo las columnas de Título, anyo y mes para nuestra lista:
+lista_shows_pelis <- shows_pelis_marzo_2020 |>
+  select(Título,anyo,mes)
+View(lista_shows_pelis)
+
+# En total, vemos que fueron 137 películas y shows de TV añadidos en el mes de marzo del año 2020.
+```
+
+```{r}
+# Si queremos ver por separado solo las películas, aplicamos un filtro:
+lista_solo_pelis <- shows_pelis_marzo_2020 |>
+  filter(Tipo == "Movie") |>
+  select(Tipo,Título,anyo,mes)
+View(lista_solo_pelis)
+
+# En total, vemos que fueron 93 películas añadidas en el mes de marzo del año 2020.
+```
+
+```{r}
+# Si queremos ver por separado solo los shows de TV, aplicamos un filtro:
+lista_solo_shows <- shows_pelis_marzo_2020 |>
+  filter(Tipo == "TV Show") |>
+  select(Tipo,Título,anyo,mes)
+View(lista_solo_shows)
+
+# En total, vemos que fueron 44 TV Shows añadidos en el mes de marzo del año 2020.
+```
